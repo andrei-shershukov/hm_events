@@ -2,10 +2,11 @@
   "name": "hm_events",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.7.1",
   "scripts": {
     "dev": "astro dev",
     "lint": "eslint . --ext .ts,.js,.astro --fix",
-    "prebuild": "npm run lint",
+    "prebuild": "pnpm run lint",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
