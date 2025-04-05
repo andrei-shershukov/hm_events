@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.7.1",
   "scripts": {
     "dev": "astro dev",
-    "lint": "eslint . --ext .ts,.js,.astro --fix",
+    "lint": "eslint --fix",
     "prebuild": "pnpm run lint",
     "build": "astro build",
     "preview": "astro preview",
@@ -17,10 +17,27 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
     "@types/node": "^22.14.0",
-    "@typescript-eslint/parser": "^8.29.0",
     "eslint": "^9.24.0",
-    "eslint-config-prettier": "^10.1.1",
-    "eslint-plugin-astro": "^1.3.1",
-    "jiti": "^2.4.2"
+    "eslint-plugin-astro": "^1.3.1"
+  },
+  "prettier": {
+    "astroSkipFrontmatter": true,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "tabWidth": 2,
+    "printWidth": 128,
+    "overrides": [
+      {
+        "files": [
+          "*.css",
+          "*.html",
+          "*.md"
+        ],
+        "options": {
+          "parser": "prettier"
+        }
+      }
+    ]
   }
 }

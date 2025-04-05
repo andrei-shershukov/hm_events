@@ -1,8 +1,11 @@
 {
   "eslint.enable": true,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "css.validate": false
+  "[css,html,markdown]": {
+    "editor.formatOnSave": true
+  }
 }
