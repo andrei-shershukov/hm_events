@@ -1,4 +1,3 @@
-import type StickySections from '..'
 import touchcancel from './touchcancel.ts'
 import touchend from './touchend.ts'
 import touchmove from './touchmove.ts'
