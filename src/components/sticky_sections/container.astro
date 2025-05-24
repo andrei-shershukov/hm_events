@@ -1,0 +1,37 @@
+---
+import StickySection from '@/components/sticky_sections/section.astro'
+import { render } from 'dom-serializer'
+import { parseDocument } from 'htmlparser2'
+// interface Props {
+//   scrolling_container_class: string | undefined
+// }
+
+// const { scrolling_container_class } = Astro.props;
+
+const sticky_sections = parseDocument((await Astro.slots.render('default')).replace(/>\s+</g, '><').trim())
+---
+
+<custom-sticky-sections
+  data-scrolling_container_class=""
+>
+  {sticky_sections.children.map((section, index) => (
+    <StickySection arrow_back={index > 0} arrow_forward={index < sticky_sections.children.length - 1}>
+      <Fragment set:html={render(section)} />
+    </StickySection>
+  ))}
+</custom-sticky-sections>
+
+<script>
+  import StickySections from '@/scripts/sticky_sections'
+
+  customElements.define('custom-sticky-sections', StickySections)
+</script>
+
+<style>
+  custom-sticky-sections {
+    display: block;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+</style>

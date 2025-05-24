@@ -1,8 +1,25 @@
 import antfu from '@antfu/eslint-config'
-import eslintPluginAstro from 'eslint-plugin-astro'
 
 export default antfu(
-  ...eslintPluginAstro.configs.recommended,
+  {
+    typescript: {
+      tsconfigPath: 'tsconfig.json',
+      overrides: {
+        'ts/naming-convention': [
+          'warn',
+          {
+            selector: 'default',
+            format: ['snake_case'],
+          },
+          {
+            selector: ['typeLike', 'import'],
+            format: ['PascalCase'],
+          },
+        ],
+      },
+    },
+    astro: true,
+  },
   {
     rules: {
       'no-console': 'warn',

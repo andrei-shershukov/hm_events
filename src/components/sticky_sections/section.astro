@@ -1,0 +1,39 @@
+---
+import Arrow from './arrow.astro'
+
+interface Props {
+  arrow_back: boolean
+  arrow_forward: boolean
+}
+
+const { arrow_back = false, arrow_forward = false } = Astro.props
+let section_height = 100
+if (arrow_back) section_height += 10
+if (arrow_forward) section_height += 10
+
+let sections_css_grid = ''
+if (arrow_back) sections_css_grid += 'minmax(10%, 10%) '
+sections_css_grid += 'minmax(100%, auto)'
+if (arrow_forward) sections_css_grid += ' minmax(10%, 10%)'
+---
+
+<div class="section">
+  { arrow_back && (<Arrow direction="up" />) }
+  <div class="content">
+    <slot />
+  </div>
+  { arrow_forward && (<Arrow direction="down" />) }
+</div>
+
+<style define:vars={{ sections_css_grid: `${sections_css_grid}`, section_height: `${section_height}%` }}>
+  .section {
+    display: contents;
+  }
+
+  .section .content {
+    display: block flow-root;
+    min-height: 100%;
+    min-width: 100%;
+    background: blue;
+  }
+</style>

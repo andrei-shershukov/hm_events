@@ -12,7 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.6.1"
+    "astro": "^5.6.1",
+    "dom-serializer": "^2.0.0",
+    "htmlparser2": "^10.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
@@ -22,11 +24,20 @@
   },
   "prettier": {
     "astroSkipFrontmatter": true,
-    "semi": false,
-    "singleQuote": true,
-    "trailingComma": "none",
+    "useTabs": false,
     "tabWidth": 2,
-    "printWidth": 128,
+    "trailingComma": "none",
+    "singleQuote": true,
+    "quoteProps": "as-needed",
+    "printWidth": 2147483646,
+    "rangeEnd": 2147483645,
+    "semi": false,
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "objectWrap": "preserve",
+    "proseWrap": "preserve",
+    "endOfLine": "lf",
+    "embeddedLanguageFormatting": "auto",
     "overrides": [
       {
         "files": [
