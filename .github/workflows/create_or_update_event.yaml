@@ -70,7 +70,7 @@ jobs:
           # Check if the event already exists
           if event_id in events:
             with open(env_file, 'a') as file:
-              file.write(f"is_existing_event=True\n")
+              file.write(f"is_existing_event=true\n")
 
               # Update existing event
             if title is not None:
@@ -91,7 +91,7 @@ jobs:
               events[event_id]['number_of_spots'] = number_of_spots
           else:
             with open(env_file, 'a') as file:
-              file.write(f"is_existing_event=False\n")
+              file.write(f"is_existing_event=false\n")
 
             # Create new event
             assert title is not None, "Title is required for new events"
@@ -130,11 +130,11 @@ jobs:
           git config --global user.name "github-actions[bot]"
 
           if [ '${{ env.is_existing_event }}' == 'true' ]; then
-            export branch_name="update-${{ github.event.inputs.id }}"
+            export branch_name="update-event-${{ github.event.inputs.id }}"
             export title="AUTOMATION: Updating event '${{ github.event.inputs.id }}'"
             export body="This PR updates the event '${{ github.event.inputs.id }}'. New event details: ${{ env.new_event_details }}"
           else
-            export branch_name="create-${{ github.event.inputs.id }}"
+            export branch_name="create-event-${{ github.event.inputs.id }}"
             export title="AUTOMATION: Creating event '${{ github.event.inputs.id }}'"
             export body="This PR creates the event '${{ github.event.inputs.id }}'. New event details: ${{ env.new_event_details }}"
           fi
@@ -146,3 +146,4 @@ jobs:
 
           gh pr create --title "$title" --body "$body" --base main --head "$branch_name"
           gh pr merge --squash --admin "$branch_name"
+          gh workflow run build_and_deploy.yaml --ref main
