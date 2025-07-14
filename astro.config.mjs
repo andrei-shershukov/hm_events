@@ -1,3 +1,4 @@
+import yaml from '@rollup/plugin-yaml'
 // @ts-check
 import { defineConfig, envField } from 'astro/config'
 
@@ -14,5 +15,8 @@ export default defineConfig({
         default: 640,
       }),
     },
+  },
+  vite: {
+    plugins: [yaml()],
   },
 })

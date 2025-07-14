@@ -1,0 +1,30 @@
+---
+import Banner from './banner.astro'
+import Wave from './wave.astro'
+
+interface Props {
+  id: string
+  title: string
+  tagline: string
+  description: string
+}
+
+const { id, title, tagline, description } = Astro.props
+const points = 6
+const contrast = 48
+const balance = 4
+const width = 1000
+---
+
+<div id={id}>
+  <Banner title={title} tagline={tagline} />
+  <div class="wave"><Wave points={points} contrast={contrast} balance={balance} width={width} /></div>
+  <p>{description}</p>
+</div>
+
+<!-- <style>
+  .wave {
+    position: absolute;
+    bottom: 0;
+  }
+</style> -->

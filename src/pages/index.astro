@@ -1,65 +1,18 @@
 ---
-import Banner from '@/components/banner.astro'
-import StickySectionsContainer from '@/components/sticky_sections/container.astro'
-// import StickySection from '@/components/sticky_sections/section.astro'
-import Wave from '@/components/wave.astro'
+import Event from '@/components/event.astro'
 import RootLayout from '@/layouts/root.astro'
-
-const points = 6
-const contrast = 48
-const balance = 4
-const width = 1000;
+import events from '@/static/events.yaml'
 ---
 
 <RootLayout>
   <div class="events">
-    <StickySectionsContainer>
-      <div>
-        <h1>Section 1</h1>
-        <p>Content for section 1 goes here. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext.Content for section 1 goes here. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext.Content for section 1 goes here. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext.Content for section 1 goes here. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext. A bunch of teeeeeeeeext.</p>
-      </div>
-      <div>
-        <h1>Section 2</h1>
-        <p>Content for section 2 goes here.</p>
-      </div>
-      <div>
-        <h1>Section 3</h1>
-        <p>Content for section 3 goes here.</p>
-      </div>
-    </StickySectionsContainer>
-    <div class="section1">
-      <Banner title="Singles Party" description="Who needs a partner? Join us for a night of fun and friendship on Valentine’s Day!" />
-      <Wave points={points} contrast={contrast} balance={balance} width={width} />
-      <div style="background:aqua; height:3000px; width:32px"></div>
-      <div class="testc">test val</div>
-    </div>
-    <div class="section2">
-      <h1>Section 2</h1>
-      <p>Content for section 2 goes here.</p>
-      <div style="background:aqua; height:3000px; width:32px"></div>
-    </div>
+    {Object.entries(events).map(([id, event]) => (
+      <Event
+        id={id}
+        title={event.title}
+        tagline={event.tagline}
+        description={event.description}
+      />
+    ))}
   </div>
 </RootLayout>
-
-<script>
-  // if (window.innerWidth < ASTRO_MOBILE_BREAKPOINT) {
-  //   import('@/scripts/custom_scrolling.ts')
-  // }
-</script>
-
-<style>
-  /* html, body {
-    scroll-behavior: smooth;
-  } */
-  .events {
-    overflow-y: scroll;
-    overflow-x: hidden;
-    margin-top: 20px;
-    height: 90vh;
-    width: 90vw;
-    /* margin: 20px; */
-  }
-  /* .section1 {
-    scroll-snap-type: mandatory;
-  } */
-</style>

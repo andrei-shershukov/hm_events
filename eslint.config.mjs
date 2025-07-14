@@ -13,7 +13,12 @@ export default antfu(
           },
           {
             selector: ['typeLike', 'import'],
-            format: ['PascalCase'],
+            // Custom regex for PascalCase with underscores before each capital letter except the first
+            format: null,
+            custom: {
+              regex: '^[A-Z][a-z0-9]+(_[A-Z][a-z0-9]+)*$',
+              match: true,
+            },
           },
         ],
       },
