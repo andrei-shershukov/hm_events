@@ -1,8 +1,18 @@
 ---
-import Welcome from '../components/Welcome.astro'
-import RootLayout from '../layouts/Root.astro';
+import Event from '@/components/event.astro'
+import RootLayout from '@/layouts/root.astro'
+import events from '@/static/events.yaml'
 ---
 
 <RootLayout>
-  <Welcome />
+  <div class="events">
+    {Object.entries(events).map(([id, event]) => (
+      <Event
+        id={id}
+        title={event.title}
+        tagline={event.tagline}
+        description={event.description}
+      />
+    ))}
+  </div>
 </RootLayout>

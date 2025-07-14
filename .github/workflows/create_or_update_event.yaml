@@ -1,0 +1,141 @@
+name: Create or Update Event
+
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: 'The ID of the event to create or update if it exists'
+        required: true
+        type: string
+      title:
+        description: 'The title of the event'
+        required: false
+        type: string
+      tagline:
+        description: 'The tagline of the event'
+        required: false
+        type: string
+      description:
+        description: 'The description of the event'
+        required: false
+        type: string
+      image:
+        description: 'The image file name of the event'
+        required: false
+        type: string
+      date:
+        description: 'The date and time of the event'
+        required: false
+        type: string
+
+jobs:
+  create_or_update_event:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+
+      - name: Create or update the event
+        shell: python
+        run: |
+          import os
+          import yaml
+          from datetime import datetime
+
+          env_file = os.getenv('GITHUB_ENV')
+
+          # Load existing events
+          with open('src/static/events.yaml', 'r') as file:
+              events = yaml.safe_load(file)
+
+          # Set the input values
+          event_id = os.getenv('INPUT_ID')
+          title = os.getenv('INPUT_TITLE', None)
+          tagline = os.getenv('INPUT_TAGLINE', None)
+          description = os.getenv('INPUT_DESCRIPTION', None)
+          image = os.getenv('INPUT_IMAGE', None)
+          date = os.getenv('INPUT_DATE', None)
+          location = None
+          ticket_price = None
+          number_of_spots = None
+
+          # Check if the event already exists
+          if event_id in events:
+            with open(env_file, 'a') as file:
+              file.write(f"is_existing_event=True\n")
+
+              # Update existing event
+            if title is not None:
+              events[event_id]['title'] = title
+            if tagline is not None:
+              events[event_id]['tagline'] = tagline
+            if description is not None:
+              events[event_id]['description'] = description
+            if image is not None:
+              events[event_id]['image'] = image
+            if date is not None:
+              events[event_id]['date'] = date
+            if location is not None:
+              events[event_id]['location'] = location
+            if ticket_price is not None:
+              events[event_id]['ticket_price'] = ticket_price
+            if number_of_spots is not None:
+              events[event_id]['number_of_spots'] = number_of_spots
+          else:
+            with open(env_file, 'a') as file:
+              file.write(f"is_existing_event=False\n")
+
+            # Create new event
+            assert title is not None, "Title is required for new events"
+            assert tagline is not None, "Tagline is required for new events"
+            assert description is not None, "Description is required for new events"
+            assert image is not None, "Image is required for new events"
+            assert date is not None, "Date is required for new events"
+            events[event_id] = {
+              'title': title,
+              'tagline': tagline,
+              'description': description,
+              'image': image,
+              'date': date,
+              'location': location,
+              'ticket_price': ticket_price,
+              'number_of_spots': number_of_spots
+            }
+
+          with open(env_file, 'a') as file:
+            file.write(f"new_event_details={yaml.safe_dump(events[event_id], default_flow_style=False, sort_keys=True, allow_unicode=True, indent=2)}\n")
+          
+          # Save the updated events back to the file
+          with open('src/static/events.yaml', 'w') as file:
+            yaml.safe_dump(events, file, width=float('inf'), default_flow_style=False, sort_keys=True, allow_unicode=True, indent=2)
+
+      - name: Push changes to feature branch and merge them to main
+        run: |
+          if ! git diff --exit-code HEAD; then
+            echo "Changes detected, proceeding with PR creation"
+          else
+            echo "No changes detected, exiting"
+            exit 1
+          fi
+          
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          if [ '${{ env.is_existing_event }}' == 'true' ]; then
+            export branch_name="update-${{ github.event.inputs.id }}"
+            export title="AUTOMATION: Updating event '${{ github.event.inputs.id }}'"
+            export body="This PR updates the event '${{ github.event.inputs.id }}'. New event details: ${{ env.new_event_details }}"
+          else
+            export branch_name="create-${{ github.event.inputs.id }}"
+            export title="AUTOMATION: Creating event '${{ github.event.inputs.id }}'"
+            export body="This PR creates the event '${{ github.event.inputs.id }}'. New event details: ${{ env.new_event_details }}"
+          fi
+          
+          git checkout -b "$branch_name"
+          git add .
+          git commit -m "$title"
+          git push origin "$branch_name"
+
+          gh pr create --title "$title" --body "$body" --base main --head "$branch_name"
+          gh pr merge --squash --admin "$branch_name"

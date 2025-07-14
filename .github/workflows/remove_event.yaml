@@ -1,0 +1,64 @@
+name: Remove Event
+
+on:
+  workflow_dispatch:
+    inputs:
+      id:
+        description: 'The ID of the event to remove'
+        required: true
+        type: string
+
+jobs:
+  remove_event:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout your repository using git
+        uses: actions/checkout@v4
+
+      - name: Remove the event
+        shell: python
+        run: |
+          import os
+          import yaml
+
+          # Load existing events
+          with open('src/static/events.yaml', 'r') as file:
+              events = yaml.safe_load(file)
+
+          # Get the event ID to remove
+          event_id = os.getenv('INPUT_ID')
+
+          # Remove the event if it exists
+          if event_id in events:
+              del events[event_id]
+
+              # Write the updated events back to the file
+              with open('src/static/events.yaml', 'w') as file:
+                  yaml.safe_dump(events, file)
+          else:
+              print(f"Event with ID {event_id} does not exist.")
+
+      - name: Push changes to feature branch and merge them to main
+        run: |
+          if ! git diff --exit-code HEAD; then
+            echo "Changes detected, proceeding with PR creation"
+          else
+            echo "No changes detected, exiting"
+            exit 1
+          fi
+          
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+          export branch_name="remove-${{ github.event.inputs.id }}"
+          export title="AUTOMATION: Removing event '${{ github.event.inputs.id }}'"
+          export body="This PR removes the event '${{ github.event.inputs.id }}'."
+
+          git checkout -b "$branch_name"
+          git add .
+          git commit -m "$title"
+          git push origin "$branch_name"
+
+          gh pr create --title "$title" --body "$body" --base main --head "$branch_name"
+          gh pr merge --squash --admin "$branch_name"

@@ -1,0 +1,23 @@
+singles_party:
+  title: Singles Party
+  tagline: Who needs a partner? Join us for a night of fun and friendship on Valentine’s Day!
+  description: test val
+  image: party.png
+  date: 2024-02-14 19:00
+  location:
+    name: The Social Club
+    map_url: https://www.google.com/maps/place/The+Social+Club/@40.712776,-74.005974,15z
+  ticket_price: 20.00
+  number_of_spots: 100
+
+picnic:
+  title: Summer Picnic
+  tagline: Enjoy a relaxing day in the sun with friends and family.
+  description: Join us for a delightful summer picnic filled with games, food, and laughter.
+  image: picnic.png
+  date: 2024-07-20 12:00
+  location:
+    name: Riverside Park
+    map_url: https://www.google.com/maps/place/Riverside+Park/@40.785091,-73.968285,15z
+  ticket_price: 10.00
+  number_of_spots: 16

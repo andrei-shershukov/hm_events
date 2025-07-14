@@ -1,8 +1,30 @@
 import antfu from '@antfu/eslint-config'
-import eslintPluginAstro from 'eslint-plugin-astro'
 
 export default antfu(
-  ...eslintPluginAstro.configs.recommended,
+  {
+    typescript: {
+      tsconfigPath: 'tsconfig.json',
+      overrides: {
+        'ts/naming-convention': [
+          'warn',
+          {
+            selector: 'default',
+            format: ['snake_case'],
+          },
+          {
+            selector: ['typeLike', 'import'],
+            // Custom regex for PascalCase with underscores before each capital letter except the first
+            format: null,
+            custom: {
+              regex: '^[A-Z][a-z0-9]+(_[A-Z][a-z0-9]+)*$',
+              match: true,
+            },
+          },
+        ],
+      },
+    },
+    astro: true,
+  },
   {
     rules: {
       'no-console': 'warn',
