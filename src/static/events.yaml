@@ -22,10 +22,10 @@ singles_party:
   title: Singles Party
 test1:
   date: 2025-02-14 19:00
-  description: Test
+  description: New desc
   image: party.png
   location: null
   number_of_spots: null
   tagline: Test
   ticket_price: null
-  title: Test
+  title: Test 2
