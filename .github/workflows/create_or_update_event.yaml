@@ -54,12 +54,12 @@ jobs:
               events = yaml.safe_load(file)
 
           # Set the input values
-          event_id = ${{ github.event.inputs.id }}
-          title = ${{ github.event.inputs.title }} or None
-          tagline = ${{ github.event.inputs.tagline }} or None
-          description = ${{ github.event.inputs.description }} or None
-          image = ${{ github.event.inputs.image }} or None
-          date = ${{ github.event.inputs.date }} or None
+          event_id = '${{ github.event.inputs.id }}'
+          title = '${{ github.event.inputs.title }}' or None
+          tagline = '${{ github.event.inputs.tagline }}' or None
+          description = '${{ github.event.inputs.description }}' or None
+          image = '${{ github.event.inputs.image }}' or None
+          date = '${{ github.event.inputs.date }}' or None
           location = None
           ticket_price = None
           number_of_spots = None
