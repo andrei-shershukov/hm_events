@@ -1,6 +1,7 @@
 picnic:
   date: 2024-07-20 12:00
-  description: Join us for a delightful summer picnic filled with games, food, and laughter.
+  description: Join us for a delightful summer picnic filled with games, food, and
+    laughter.
   image: picnic.png
   location:
     map_url: https://www.google.com/maps/place/Riverside+Park/@40.785091,-73.968285,15z
@@ -17,15 +18,7 @@ singles_party:
     map_url: https://www.google.com/maps/place/The+Social+Club/@40.712776,-74.005974,15z
     name: The Social Club
   number_of_spots: 100
-  tagline: Who needs a partner? Join us for a night of fun and friendship on Valentine’s Day!
+  tagline: "Who needs a partner? Join us for a night of fun and friendship on Valentine\u2019\
+    s Day!"
   ticket_price: 20.0
   title: Singles Party
-test1:
-  date: 2025-02-14 19:00
-  description: New desc
-  image: party.png
-  location: null
-  number_of_spots: null
-  tagline: tgggggggg
-  ticket_price: null
-  title: New Title 3
