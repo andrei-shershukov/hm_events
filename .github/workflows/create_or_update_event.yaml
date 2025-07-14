@@ -108,8 +108,8 @@ jobs:
             }
 
           with open(env_file, 'a') as file:
-            file.write(f"new_event_details={yaml.safe_dump(events[event_id], default_flow_style=False, sort_keys=True, allow_unicode=True, indent=2)}\n")
-          
+            file.write(f"new_event_details={str(events[event_id])}\n")
+
           # Save the updated events back to the file
           with open('src/static/events.yaml', 'w') as file:
             yaml.safe_dump(events, file, width=float('inf'), default_flow_style=False, sort_keys=True, allow_unicode=True, indent=2)
