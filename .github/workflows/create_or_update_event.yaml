@@ -28,6 +28,9 @@ on:
         required: false
         type: string
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   create_or_update_event:
     runs-on: ubuntu-latest

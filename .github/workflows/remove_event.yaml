@@ -8,6 +8,9 @@ on:
         required: true
         type: string
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   remove_event:
     runs-on: ubuntu-latest
@@ -32,7 +35,8 @@ jobs:
               events = yaml.safe_load(file)
 
           # Get the event ID to remove
-          event_id = os.getenv('INPUT_ID')
+          event_id = '${{ github.event.inputs.id }}'
+          assert event_id, "Event ID must be provided"
 
           # Remove the event if it exists
           if event_id in events:
