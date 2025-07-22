@@ -1,10 +1,10 @@
 ---
 import Event from '@/components/event.astro'
-import RootLayout from '@/layouts/root.astro'
+import EventsPageLayout from '@/layouts/events-page.astro'
 import events from '@/static/events.yaml'
 ---
 
-<RootLayout>
+<EventsPageLayout>
   <div class="events">
     {Object.entries(events).map(([id, event]) => (
       <Event
@@ -15,4 +15,17 @@ import events from '@/static/events.yaml'
       />
     ))}
   </div>
-</RootLayout>
+</EventsPageLayout>
+
+<style>
+  .events {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px 0;
+  }
+
+  /* Smooth scrolling for navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

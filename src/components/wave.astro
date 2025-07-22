@@ -4,9 +4,10 @@ interface Props {
   contrast: number
   balance: number
   width: number
+  gradient?: 'left' | 'right' | 'none'
 }
 
-const { points, contrast, balance, width } = Astro.props
+const { points, contrast, balance, width, gradient = 'none' } = Astro.props
 
 function generateWavePath(points: number, contrast: number, balance: number, width: number) {
   const step = width / (points - 1)
@@ -33,11 +34,42 @@ function generateWavePath(points: number, contrast: number, balance: number, wid
   }
 
   // Close the path to the bottom
-  path += ` L ${width},100 L 0,100 Z`
+  path += ` L ${width},200 L 0,200 Z`
 
   return path
 }
+
+const gradientId = `wave-gradient-${Math.random().toString(36).substr(2, 9)}`
 ---
-<svg xmlns="http://www.w3.org/2000/svg" width={width} height="200" viewBox={`0 -100 ${width} 200`}>
-  <path d={generateWavePath(points, contrast, balance, width)} fill="blue" stroke-linecap="round" stroke-linejoin="miter" />
+
+<svg xmlns="http://www.w3.org/2000/svg" width={width} height="300" viewBox={`0 -150 ${width} 300`} class="wave-svg">
+  <defs>
+    {gradient === 'left' && (
+      <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:var(--color-pink-accent);stop-opacity:0.6" />
+        <stop offset="50%" style="stop-color:var(--color-yellow-highlight);stop-opacity:0.4" />
+        <stop offset="100%" style="stop-color:var(--color-pink-fg);stop-opacity:0.2" />
+      </linearGradient>
+    )}
+    {gradient === 'right' && (
+      <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:var(--color-pink-fg);stop-opacity:0.2" />
+        <stop offset="50%" style="stop-color:var(--color-yellow-highlight);stop-opacity:0.4" />
+        <stop offset="100%" style="stop-color:var(--color-pink-accent);stop-opacity:0.6" />
+      </linearGradient>
+    )}
+  </defs>
+  <path
+    d={generateWavePath(points, contrast, balance, width)}
+    fill={gradient !== 'none' ? `url(#${gradientId})` : 'var(--color-pink-accent)'}
+    stroke="none"
+  />
 </svg>
+
+<style>
+  .wave-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+</style>

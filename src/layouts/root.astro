@@ -19,10 +19,21 @@ import Navbar from '@/components/navbar.astro';
 </html>
 
 <style>
+  :root {
+    --color-pink-fg: #E7B7B6;
+    --color-brown-bg: #947676;
+    --color-yellow-highlight: #FFE69A;
+    --color-pink-accent: #EF817E;
+    --color-white: #ffffff;
+    --color-black: #000000;
+  }
 
   html,
   body {
     margin: 0;
+    background-color: var(--color-brown-bg);
+    color: var(--color-pink-fg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 
   .content_wrapper {
@@ -30,6 +41,6 @@ import Navbar from '@/components/navbar.astro';
     margin: auto;
     box-sizing: border-box;
     overflow: hidden;
+    position: relative;
   }
-
 </style>
