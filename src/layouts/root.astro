@@ -19,17 +19,65 @@ import Navbar from '@/components/navbar.astro';
 </html>
 
 <style>
-
-  html,
-  body {
-    margin: 0;
-  }
-
   .content_wrapper {
     max-width: 1024px;
     margin: auto;
     box-sizing: border-box;
     overflow: hidden;
+    position: relative;
+  }
+</style>
+
+<style is:global>
+  :root {
+    --color-pink-fg: rgb(231, 183, 182);
+    --color-brown-bg: rgb(148, 118, 118);
+    --color-yellow-highlight: rgb(255, 230, 154);
+    --color-pink-accent: rgb(239, 129, 126);
+    --color-white: rgb(255, 255, 255);
+    --color-black: rgb(0, 0, 0);
   }
 
+  html,
+  body {
+    margin: 0;
+    background-color: var(--color-brown-bg);
+    color: var(--color-pink-fg);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
 </style>

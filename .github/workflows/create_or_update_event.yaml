@@ -4,27 +4,27 @@ on:
   workflow_dispatch:
     inputs:
       id:
-        description: 'The ID of the event to create or update if it exists'
+        description: The ID of the event to create or update if it exists
         required: true
         type: string
       title:
-        description: 'The title of the event'
+        description: The title of the event
         required: false
         type: string
       tagline:
-        description: 'The tagline of the event'
+        description: The tagline of the event
         required: false
         type: string
       description:
-        description: 'The description of the event'
+        description: The description of the event
         required: false
         type: string
       image:
-        description: 'The image file name of the event'
+        description: The image file name of the event
         required: false
         type: string
       date:
-        description: 'The date and time of the event'
+        description: The date and time of the event
         required: false
         type: string
 
@@ -34,7 +34,7 @@ env:
 jobs:
   create_or_update_event:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
@@ -125,7 +125,7 @@ jobs:
             echo "No changes detected, exiting"
             exit 1
           fi
-          
+
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
 
@@ -138,7 +138,7 @@ jobs:
             export title="AUTOMATION: Creating event '${{ github.event.inputs.id }}'"
             export body="This PR creates the event '${{ github.event.inputs.id }}'. New event details: ${{ env.new_event_details }}"
           fi
-          
+
           git checkout -b "$branch_name"
           git add .
           git commit -m "$title"

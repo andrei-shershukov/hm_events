@@ -10,9 +10,9 @@ declare module '@/static/events.yaml' {
     description: string
     image: string
     date: string
-    location: Event_Location | null
-    ticket_price: number | null
-    number_of_spots: number | null
+    location: Event_Location
+    ticket_price: number
+    number_of_spots: number
   }
 
   const events: Record<string, Event>

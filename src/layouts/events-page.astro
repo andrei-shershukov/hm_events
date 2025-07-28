@@ -1,0 +1,76 @@
+---
+import RootLayout from './root.astro'
+---
+
+<RootLayout>
+  <div class="events-page">
+    <!-- Main content -->
+    <div class="events-content">
+      <slot />
+    </div>
+  </div>
+</RootLayout>
+
+<style>
+  .events-page {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 80px; /* Space for fixed navbar */
+  }
+
+  .waves-container {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    z-index: -1;
+    display: none;
+  }
+
+  .left-waves {
+    left: -150px;
+    transform: translateZ(0);
+  }
+
+  .right-waves {
+    right: -150px;
+    transform: translateZ(0) scaleX(-1);
+  }
+
+  .events-content {
+    position: relative;
+    z-index: 1;
+    padding: 0 20px;
+  }
+
+  /* Desktop only waves */
+  @media (min-width: 1200px) {
+    .waves-container {
+      display: block;
+    }
+
+    .events-content {
+      padding: 0 40px;
+    }
+  }
+
+  /* Parallax effect */
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1200px) {
+    .left-waves {
+      animation: parallax-left 20s ease-in-out infinite;
+    }
+
+    .right-waves {
+      animation: parallax-right 25s ease-in-out infinite;
+    }
+  }
+
+  @keyframes parallax-left {
+    0%, 100% { transform: translateY(0) translateZ(0); }
+    50% { transform: translateY(-20px) translateZ(0); }
+  }
+
+  @keyframes parallax-right {
+    0%, 100% { transform: translateY(0) translateZ(0) scaleX(-1); }
+    50% { transform: translateY(15px) translateZ(0) scaleX(-1); }
+  }
+</style>
