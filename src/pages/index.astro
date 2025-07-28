@@ -12,6 +12,11 @@ import events from '@/static/events.yaml'
         title={event.title}
         tagline={event.tagline}
         description={event.description}
+        date={event.date}
+        image={`events/${event.image}`}
+        location={event.location}
+        number_of_spots={event.number_of_spots}
+        ticket_price={event.ticket_price}
       />
     ))}
   </div>
@@ -22,10 +27,5 @@ import events from '@/static/events.yaml'
     max-width: 800px;
     margin: 0 auto;
     padding: 20px 0;
-  }
-
-  /* Smooth scrolling for navigation */
-  html {
-    scroll-behavior: smooth;
   }
 </style>

@@ -1,5 +1,4 @@
 ---
-import events from '@/static/events.yaml'
 import Banner from './banner.astro'
 
 interface Props {
@@ -7,55 +6,64 @@ interface Props {
   title: string
   tagline: string
   description: string
+  date: string
+  image: string
+  location: {
+    name: string
+    map_url: string
+  }
+  number_of_spots: number
+  ticket_price: number
 }
 
-const { id, title, tagline, description } = Astro.props
-const event = events[id as keyof typeof events]
-const imagePath = event?.image ? `/events/${event.image}` : undefined
+const { id, title, tagline, description, date, image, location, number_of_spots, ticket_price } = Astro.props
 ---
 
 <section id={id} class="event-section">
-  <Banner title={title} tagline={tagline} image={imagePath} />
+  <Banner title={title} tagline={tagline} image={image} />
 
   <div class="event-content">
     <div class="event-description">
       <p>{description}</p>
     </div>
-
-    {event && (
-      <div class="event-details">
-        <div class="detail-item">
-          <span class="detail-label">Date & Time:</span>
-          <span class="detail-value">{new Date(event.date).toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-          })}</span>
-        </div>
-
-        <div class="detail-item">
-          <span class="detail-label">Location:</span>
-          <span class="detail-value">
-            <a href={event.location.map_url} target="_blank" rel="noopener noreferrer" class="location-link">
-              {event.location.name}
-            </a>
-          </span>
-        </div>
-
-        <div class="detail-item">
-          <span class="detail-label">Available Spots:</span>
-          <span class="detail-value">{event.number_of_spots}</span>
-        </div>
-
-        <div class="detail-item">
-          <span class="detail-label">Ticket Price:</span>
-          <span class="detail-value price">${event.ticket_price}</span>
-        </div>
+    <div class="event-details">
+      <div class="detail-item">
+        <span class="detail-label">Date & Time:</span>
+        <span class="detail-value">{new Date(date).toLocaleDateString('en-US', {
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        })}</span>
       </div>
-    )}
+
+      <div class="detail-item">
+        <span class="detail-label">Location:</span>
+        <span class="detail-value">
+          <a href={location.map_url} target="_blank" rel="noopener noreferrer" class="location-link">
+            {location.name}
+          </a>
+        </span>
+      </div>
+
+      <div class="detail-item">
+        <span class="detail-label">Available Spots:</span>
+        <span class="detail-value">{number_of_spots}</span>
+      </div>
+
+      <div class="detail-item price">
+        <span class="detail-label">Ticket Price:</span>
+        {ticket_price === 0
+          ? (
+            <span class="detail-value free">FREE</span>
+          )
+          : (
+            <span class="detail-value">${ticket_price}</span>
+          )}
+      </div>
+    </div>
   </div>
 </section>
 
@@ -71,8 +79,7 @@ const imagePath = event?.image ? `/events/${event.image}` : undefined
     border-radius: 16px;
     padding: 32px;
     box-shadow: 0 8px 24px rgba(148, 118, 118, 0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(231, 183, 182, 0.2);
+    border: 1px solid rgba(231, 183, 182, 0.75);
   }
 
   .event-description {
@@ -80,12 +87,8 @@ const imagePath = event?.image ? `/events/${event.image}` : undefined
   }
 
   .event-description p {
-    font-size: 1.1rem;
-    line-height: 1.6;
     color: var(--color-brown-bg);
-    margin: 0;
     text-align: center;
-    font-weight: 400;
   }
 
   .event-details {
@@ -124,7 +127,7 @@ const imagePath = event?.image ? `/events/${event.image}` : undefined
     text-decoration: underline;
   }
 
-  .price {
+  .price .free {
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--color-pink-accent);
@@ -145,10 +148,6 @@ const imagePath = event?.image ? `/events/${event.image}` : undefined
     .event-details {
       grid-template-columns: 1fr;
       gap: 16px;
-    }
-
-    .event-description p {
-      font-size: 1rem;
     }
   }
 
